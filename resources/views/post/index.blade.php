@@ -10,6 +10,5 @@
 
     <div class="mt-8">
         {{ $posts->links() }}
-
     </div>
 </x-guest-layout>

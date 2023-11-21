@@ -1,3 +1,4 @@
+@auth
 <x-guest-layout>
     <div class="mb-4 text-xs text-gray-500">
         {{ $post->published_at }}
@@ -6,3 +7,4 @@
         {!! \nl2br($post->body) !!}
     </div>
 </x-guest-layout>
+@endauth
