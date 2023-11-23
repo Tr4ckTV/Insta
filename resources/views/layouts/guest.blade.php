@@ -21,15 +21,17 @@
             @auth
             <nav class="flex justify-between items-center py-2">
                 <div>
-                    <a href="{{ route('posts.index') }}"
+                    <a href="posts"
                         class="group font-bold text-3xl flex items-center space-x-4 hover:text-emerald-600 transition ">
                         <x-application-logo
                             class="w-10 h-10 fill-current text-gray-500 group-hover:text-emerald-500 transition" />
                         FakeInsta</a>
                 </div>
 
-                    <a href="/Insta/public/profile" class="group font-bold text-3xl flex items-center space-x-4 hover:text-emerald-600 transition ">
+                    <a href="/profile" class="group font-bold text-3xl flex items-center space-x-4 hover:text-emerald-600 transition ">
                         Profil</a>
+                    <a href="admin" class="group font-bold text-3xl flex items-center space-x-4 hover:text-emerald-600 transition ">
+                        Compte</a>
                 </div>
             </nav>
             @endauth

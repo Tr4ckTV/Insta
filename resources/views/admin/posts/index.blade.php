@@ -11,14 +11,14 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     <div class="flex justify-between mt-8">
-                        <div class=" text-2xl">
-                            Liste des articles
+                        <div class="text-2xl font-bold">
+                            Liste des Posts
                         </div>
 
-                        <div class="flex  items-center justify-center space-x-8">
-                            <a href="{{ route('posts.create') }}"
+                        <div class="flex items-center space-x-8">
+                            <a href="{{ route('admin.posts.create') }}"
                                 class="text-gray-500 font-bold py-2 px-4 rounded hover:bg-gray-200 transition">Ajouter un
-                                article</a>
+                                post</a>
                         </div>
                     </div>
 
@@ -26,28 +26,28 @@
                         <table class="table-auto w-full">
                             <thead>
                                 <tr class="uppercase text-left">
-                                    <th class="px-4 py-2 border">Titre</th>
-                                    <th class="px-4 py-2 border">Auteur</th>
+                                    <th class="px-4 py-2 border">Username</th>
                                     <th class="px-4 py-2 border">Date de publication</th>
                                     <th class="px-4 py-2 border">Dernière modification</th>
                                     <th class="px-4 py-2 border">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($articles as $article)
+                                @forelse ($posts as $post)
                                     <tr class="hover:bg-gray-50 odd:bg-gray-100 hover:odd:bg-gray-200 transition">
+
                                         <td class="border px-4 py-2">
-                                            {{ $article->title }}</td>
+                                            {{ $post->user->username }}
+                                        </td>
                                         <td class="border px-4 py-2">
-                                            {{ $article->user->name }}</td>
+                                            {{ $post->published_at ? $post->published_at : 'Non publié' }}
+                                        </td>
                                         <td class="border px-4 py-2">
-                                            {{ $article->published_at?->diffForHumans() }}</td>
-                                        <td class="border px-4 py-2">
-                                            {{ $article->updated_at->diffForHumans() }}</td>
+                                            {{ $post->updated_at }}
+                                        </td>
                                         <td class="border px-4 py-2 space-x-4">
-                                            <a href="{{ route('posts.edit', $article->id) }}"
-                                                class="text-blue-400">Edit</a>
-                                            <form action="{{ route('posts.destroy', $article->id) }}" method="POST"
+                                            <a href=#>
+                                            <form method="POST"
                                                 class="inline">
                                                 @csrf
                                                 @method('DELETE')
@@ -55,13 +55,14 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="border px-4 py-2 text-center">Aucun post trouvé.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
 
-                        <div class="mt-4">
-                            {{ $posts->links() }}
-                        </div>
                     </div>
                 </div>
             </div>
