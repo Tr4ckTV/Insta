@@ -33,6 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/profile/avatar', [ProfileController::class, 'showAvatarForm'])->name('profile.avatar');
+    Route::patch('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
+
     Route::get('/admin', [AdminPostController::class, 'index'])->name('admin');
     Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
     Route::post('/admin/posts/store', [AdminPostController::class, 'store'])->name('admin.posts.store');
