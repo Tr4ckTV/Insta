@@ -28,7 +28,7 @@
                         FakeInsta</a>
                 </div>
 
-                    <a href="/profile" class="group font-bold text-3xl flex items-center space-x-4 hover:text-emerald-600 transition ">
+                    <a href="profile" class="group font-bold text-3xl flex items-center space-x-4 hover:text-emerald-600 transition ">
                         Profil</a>
                     <a href="admin" class="group font-bold text-3xl flex items-center space-x-4 hover:text-emerald-600 transition ">
                         Compte</a>

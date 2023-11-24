@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -34,7 +34,7 @@
                             </thead>
                             <tbody>
                                 @forelse ($posts as $post)
-                                    <tr class="hover:bg-gray-50 odd:bg-gray-100 hover:odd:bg-gray-200 transition">
+                                    <tr class=" odd:bg-gray-100">
 
                                         <td class="border px-4 py-2">
                                             {{ $post->user->username }}
@@ -46,13 +46,12 @@
                                             {{ $post->updated_at }}
                                         </td>
                                         <td class="border px-4 py-2 space-x-4">
-                                            <a href=#>
-                                            <form method="POST"
-                                                class="inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-red-400">Delete</button>
-                                            </form>
+                                            <a href="{{ route('admin.posts.confirm-delete', $post->id) }}">
+                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                                            </a>
+                                            <a href="{{ route('admin.posts.edit', $post->id) }}">
+                                                <button type="submit" class="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty
@@ -62,11 +61,10 @@
                                 @endforelse
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-</x-app-layout>
+</x-guest-layout>

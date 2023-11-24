@@ -36,6 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminPostController::class, 'index'])->name('admin');
     Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
     Route::post('/admin/posts/store', [AdminPostController::class, 'store'])->name('admin.posts.store');
+    Route::get('/admin/posts/confirm-delete/{post}', [AdminPostController::class, 'confirmDelete'])->name('admin.posts.confirm-delete');
+    Route::delete('/admin/posts/delete/{post}', [AdminPostController::class, 'delete'])->name('admin.posts.delete');
+    Route::get('/admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->name('admin.posts.edit');
+    Route::patch('/admin/posts/{post}', [AdminPostController::class, 'update'])->name('admin.posts.update');
 });
 
 

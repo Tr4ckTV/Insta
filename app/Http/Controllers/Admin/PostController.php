@@ -76,22 +76,41 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Post $post)
-    {
-        //
-    }
+{
+    $request->validate([
+        'body' => 'required',
+    ]);
+
+    $post->update([
+        'body' => $request->input('body'),
+    ]);
+
+    return redirect()->route('admin');
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function delete(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('admin');
     }
+
+
+    public function confirmDelete(Post $post)
+    {
+        return view('admin.posts.confirm-delete', compact('post'));
+    }
+
 }
+
+
