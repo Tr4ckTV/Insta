@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/avatar', [ProfileController::class, 'showAvatarForm'])->name('profile.avatar');
     Route::patch('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
 
+    Route::patch('/profile/bio', [ProfileController::class, 'updateBio'])->name('profile.update');
+
     Route::get('/admin', [AdminPostController::class, 'index'])->name('admin');
     Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
     Route::post('/admin/posts/store', [AdminPostController::class, 'store'])->name('admin.posts.store');

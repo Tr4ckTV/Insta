@@ -58,6 +58,9 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
+        /**
+     * Avatar.
+     */
     public function showAvatarForm(Request $request): View
     {
         return view('profile.avatar', [
@@ -78,7 +81,26 @@ class ProfileController extends Controller
             $user->save();
         }
 
-        return Redirect::route('profile.edit')->with('status', 'avatar-updated');
+        return Redirect::route('profile.edit');
     }
+
+
+        /**
+     * Bio.
+     */
+
+     public function updateBio(Request $request): RedirectResponse
+     {
+
+         $request->validate([
+             'bio' => ['required', 'string'],
+         ]);
+
+         $user = $request->user();
+         $user->bio = $request->input('bio');
+         $user->save();
+
+         return Redirect::route('profile.edit');
+     }
 
 }
