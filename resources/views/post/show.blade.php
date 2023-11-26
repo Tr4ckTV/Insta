@@ -2,7 +2,11 @@
     <div class="flex mt-8">
         <x-avatar class="h-20 w-20" :user="$post->user" />
         <div class="ml-4 flex flex-col justify-center">
-          <div class="text-gray-700">{{ $post->user->username }}</div>
+          <div class="text-gray-700">
+            <a href="{{ route('profile.show', $post->user) }}" class="text-blue-500 hover:underline">
+                {{ $post->user->username }}
+            </a>
+          </div>
         </div>
       </div>
     <div class="mb-4 text-xs text-gray-500">
@@ -12,7 +16,4 @@
     <div>
         {!! \nl2br($post->body) !!}
     </div>
-    <div class="ml-4 flex flex-col justify-center">
-        <div class="text-gray-700">{{ $post->user->bio }}</div>
-      </div>
 </x-app-layout>
