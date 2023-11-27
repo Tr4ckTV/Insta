@@ -61,4 +61,22 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Image::class, Post::class);
     }
+
+    public function following(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id')->withTimestamps();
+    }
+
+    /**
+     * Check if the current user is following the given user.
+     */
+    public function isFollowing(User $user): bool
+    {
+        return $this->following->contains($user);
+    }
+
+    public function isNotUser(User $user): bool
+    {
+        return $this->id !== $user->id;
+    }
 }

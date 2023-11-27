@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
 
+    Route::post('/profile/{user}/follow', [ProfileController::class, 'follow'])->name('follow');
+    Route::post('/profile/{user}/unfollow', [ProfileController::class, 'unfollow'])->name('unfollow');
+
     Route::get('/admin', [AdminPostController::class, 'index'])->name('admin');
     Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
     Route::post('/admin/posts/store', [AdminPostController::class, 'store'])->name('admin.posts.store');

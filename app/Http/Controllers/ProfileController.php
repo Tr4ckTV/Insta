@@ -109,4 +109,25 @@ class ProfileController extends Controller
         return view('profile.show', compact('user', 'posts'));
     }
 
+
+    /**
+     * Follow a user.
+     */
+    public function follow(User $user): RedirectResponse
+    {
+        Auth::user()->following()->attach($user->id);
+
+        return redirect()->back()->with('status', 'User followed successfully.');
+    }
+
+    /**
+     * Unfollow a user.
+     */
+    public function unfollow(User $user): RedirectResponse
+    {
+        Auth::user()->following()->detach($user->id);
+
+        return redirect()->back()->with('status', 'User unfollowed successfully.');
+    }
+
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Follow extends Model
+class Follow extends User
 {
     use HasFactory;
 
@@ -21,8 +21,8 @@ class Follow extends Model
         return $this->belongsTo(User::class, 'follower_id');
     }
 
-    public function following(): BelongsToMany
+    public function followedUser(): BelongsTo
     {
-        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id')->withTimestamps();
+        return $this->belongsTo(User::class, 'following_id');
     }
 }
