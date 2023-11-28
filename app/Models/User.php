@@ -67,9 +67,11 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id')->withTimestamps();
     }
 
-    /**
-     * Check if the current user is following the given user.
-     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id')->withTimestamps();
+    }
+
     public function isFollowing(User $user): bool
     {
         return $this->following->contains($user);
@@ -78,5 +80,15 @@ class User extends Authenticatable
     public function isNotUser(User $user): bool
     {
         return $this->id !== $user->id;
+    }
+
+    public function followerCount(): int
+    {
+        return $this->followers()->count();
+    }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
     }
 }

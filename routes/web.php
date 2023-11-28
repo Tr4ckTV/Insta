@@ -45,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/{user}/follow', [ProfileController::class, 'follow'])->name('follow');
     Route::post('/profile/{user}/unfollow', [ProfileController::class, 'unfollow'])->name('unfollow');
 
+    Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
+    Route::delete('/posts/{post}/unlike', [PostController::class, 'unlike'])->name('posts.unlike');
+
     Route::get('/admin', [AdminPostController::class, 'index'])->name('admin');
     Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
     Route::post('/admin/posts/store', [AdminPostController::class, 'store'])->name('admin.posts.store');

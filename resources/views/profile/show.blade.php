@@ -7,6 +7,9 @@
 
         <div class="ml-4 flex flex-col">
             <p class="font-bold">{{ $user->username }}</p>
+            <div class="bg-gray-800 text-white p-2 rounded">
+                {{ $user->followerCount() }} Followers
+            </div>
             <div class="text-gray-700">{{ $user->bio }}</div>
 
             @if (Auth::user()->isNot($user))
@@ -29,7 +32,10 @@
     <h2 class="mt-8 mb-4 text-xl">Galerie de photos :</h2>
     <div class="grid grid-cols-3 gap-4">
         @foreach ($user->posts as $post)
-            <img src="{{ asset('storage/' . $post->img_path) }}" alt="Photo de {{ $user->username }}" class="w-full h-auto">
+            <a href="{{ route('posts.show', $post) }}">
+                <img src="{{ asset('storage/' . $post->img_path) }}" alt="Photo de {{ $user->username }}" class="w-full h-auto">
+            </a>
         @endforeach
     </div>
 </x-app-layout>
+

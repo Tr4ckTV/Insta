@@ -11,6 +11,9 @@
         <div class="flex-grow text-gray-700 text-sm text-justify">
             {{ Str::limit($post->body, 120) }}
         </div>
+        <div class="bg-gray-800 text-white p-2 rounded">
+            {{ $post->likeCount() }} Likes
+        </div>
         <div class="text-xs text-gray-500">
             {{ $post->published_at }}
         </div>

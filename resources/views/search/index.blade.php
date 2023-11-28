@@ -6,7 +6,12 @@
             {{ $user->username }}
         </a>
     </p>
+
+@endforeach
+
+<h2>Posts des utilisateurs :</h2>
     <!-- Afficher les posts de l'utilisateur -->
+@foreach ($users as $user)
     @foreach ($user->posts as $post)
         <x-post-card :post="$post" />
     @endforeach
