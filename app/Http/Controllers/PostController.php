@@ -19,16 +19,17 @@ use Carbon\Carbon;
         $threeDaysAgo = Carbon::now()->subDays(3);
 
         $posts = Post::select('posts.*')
+
             ->withCount('likes')
-            ->leftJoin('follows', function ($join) use ($user) {
+            ->leftJoin('follows', function ($join) use ($user, $threeDaysAgo) {
                 $join->on('posts.user_id', '=', 'follows.following_id')
-                    ->where('follows.follower_id', $user->id);
+                    ->where('follows.follower_id', $user->id)
+                    ->where('posts.published_at', '>=', $threeDaysAgo);
             })
             ->leftJoin('likes', function ($join) use ($user) {
                 $join->on('posts.id', '=', 'likes.post_id')
                     ->where('likes.user_id', $user->id);
             })
-            ->where('posts.published_at', '>=', $threeDaysAgo)
             ->orderByRaw('
                 CASE
                     WHEN follows.created_at IS NOT NULL AND likes.id IS NULL THEN 1

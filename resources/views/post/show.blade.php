@@ -35,6 +35,17 @@
     <div class="bg-gray-800 text-white p-2 rounded">
         {{ $post->likeCount() }} Likes
     </div>
+
+    <h2>Commentaires :</h2>
+    @foreach($post->comments as $comment)
+        <p>{{ $comment->user->username }} : {{ $comment->content }}</p>
+    @endforeach
+
+    <form action="{{ route('comment.create', ['post' => $post->id]) }}" method="POST">
+        @csrf
+        <textarea name="content" rows="3" placeholder="Ajouter un commentaire"></textarea>
+        <button type="submit">Commenter</button>
+    </form>
 </x-app-layout>
 
 

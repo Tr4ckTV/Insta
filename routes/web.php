@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
     Route::delete('/posts/{post}/unlike', [PostController::class, 'unlike'])->name('posts.unlike');
+
+    Route::post('/posts/{post}/comment', [CommentController::class, 'store'])->name('comment.create');
 
     Route::get('/admin', [AdminPostController::class, 'index'])->name('admin');
     Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
