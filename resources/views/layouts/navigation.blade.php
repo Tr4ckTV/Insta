@@ -7,12 +7,15 @@
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="flex justify-between h-16">
                             <div class="flex items-center">
-                                <a href="/posts" class="group font-bold text-3xl flex items-center space-x-4 hover:text-emerald-600 transition ">
-                                    <x-application-logo class="w-10 h-10 fill-current text-gray-500 group-hover:text-emerald-500 transition" />
+                                <a href="/posts" class="group font-bold text-3xl flex items-center space-x-4 hover:text-pink-500 transition ">
+                                    <x-application-logo class="w-10 h-10 fill-current text-gray-500 hover:text-pink-300 transition" />
                                     FakeInsta
                                 </a>
-                                <a href="/admin" class="group font-bold text-3xl flex items-center space-x-4 hover:text-emerald-600 transition ml-4">
-                                    Compte
+                                <a href="/admin" class="group font-bold text-3xl flex items-center space-x-4 hover:text-pink-500 transition ml-4">
+                                    Mes posts
+                                </a>
+                                <a href="{{ route ('profile.show', [auth() -> user()])}}" class="group font-bold text-3xl flex items-center space-x-4 hover:text-pink-500 transition ml-4">
+                                    Mon profil
                                 </a>
                             </div>
                             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -42,7 +45,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Paramètres') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -52,7 +55,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Déconnexion') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
-use App\Models\Like;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
-
-    class PostController extends Controller
+class PostController extends Controller
 {
     public function index()
     {
@@ -45,8 +41,6 @@ use Carbon\Carbon;
         ]);
     }
 
-
-
     public function show($id)
     {
         $post = Post::findOrFail($id);
@@ -55,7 +49,6 @@ use Carbon\Carbon;
             'post' => $post,
         ]);
     }
-
 
     public function like(Post $post)
     {

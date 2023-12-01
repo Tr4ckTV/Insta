@@ -3,16 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Follow;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use App\Models\User;
-use App\Models\Post;
-use App\Models\Follow;
-
-
 
 class ProfileController extends Controller
 {
@@ -30,27 +27,27 @@ class ProfileController extends Controller
      * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
-{
-    $user = $request->user();
+    {
+        $user = $request->user();
 
-    // Mise à jour du nom d'utilisateur
-    $user->username = $request->input('username');
+        // Mise à jour du nom d'utilisateur
+        $user->username = $request->input('username');
 
-    // Mise à jour de la biographie
-    $user->bio = $request->input('bio');
+        // Mise à jour de la biographie
+        $user->bio = $request->input('bio');
 
-    // Mise à jour de l'email
-    $user->fill($request->validated());
+        // Mise à jour de l'email
+        $user->fill($request->validated());
 
-    // Si l'email a changé, réinitialisez la vérification de l'email
-    if ($user->isDirty('email')) {
-        $user->email_verified_at = null;
+        // Si l'email a changé, réinitialisez la vérification de l'email
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
-
-    $user->save();
-
-    return Redirect::route('profile.edit')->with('status', 'profile-updated');
-}
 
     /**
      * Delete the user's account.
@@ -73,7 +70,7 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-        /**
+    /**
      * Avatar.
      */
     public function showAvatarForm(Request $request): View
@@ -102,14 +99,12 @@ class ProfileController extends Controller
     /**
      * Profil.
      */
-
-     public function show(User $user)
+    public function show(User $user)
     {
         $posts = $user->posts;
 
         return view('profile.show', compact('user', 'posts'));
     }
-
 
     /**
      * Follow a user.
@@ -130,5 +125,4 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('status', 'User unfollowed successfully.');
     }
-
 }

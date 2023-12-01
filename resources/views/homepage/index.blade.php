@@ -6,7 +6,7 @@
                 <h1 class="text-2xl font-semibold mb-4">Connexion</h1>
 
                 <a href="{{ route('login') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Connection
+                    Connexion
                 </a>
             </div>
 

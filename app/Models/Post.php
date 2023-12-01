@@ -10,12 +10,14 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['body'];
+
+    protected $casts = ['published_at' => 'datetime'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
-    protected $fillable = ['body'];
 
     public function likes(): HasMany
     {

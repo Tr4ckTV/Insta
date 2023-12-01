@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
@@ -18,5 +18,3 @@ class SearchController extends Controller
         return view('search.index', compact('users', 'posts'));
     }
 }
-
-

@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PostController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +19,11 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::middleware('auth')->group(function () {
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+    Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 });
 
 Route::get('/dashboard', function () {
@@ -59,6 +58,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->name('admin.posts.edit');
     Route::patch('/admin/posts/{post}', [AdminPostController::class, 'update'])->name('admin.posts.update');
 });
-
 
 require __DIR__.'/auth.php';

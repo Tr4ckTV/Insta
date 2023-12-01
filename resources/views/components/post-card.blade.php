@@ -4,18 +4,22 @@
         <div class="flex mt-8">
             <x-avatar class="h-20 w-20" :user="$post->user" />
             <div class="ml-4 flex flex-col justify-center">
-              <div class="text-gray-700">{{ $post->user->username }}</div>
+                <div class="text-gray-700">{{ $post->user->username }}</div>
             </div>
         </div>
-            <img src="{{ asset('storage/' . $post->img_path) }}" alt="Post Image" class="mb-4 rounded-md">
+        <img src="{{ asset('storage/' . $post->img_path) }}" alt="Post Image" class="mb-4 rounded-md">
         <div class="flex-grow text-gray-700 text-sm text-justify">
             {{ Str::limit($post->body, 120) }}
         </div>
-        <div class="bg-gray-800 text-white p-2 rounded">
-            {{ $post->likeCount() }} Likes
+        <div class="flex items-center mt-4">
+            <div class="bg-gray-800 text-white p-2 rounded mr-2">
+                {{ $post->likeCount() }} ❤
+            </div>
+            <!-- Ajoutez ici votre bouton de like si nécessaire -->
         </div>
         <div class="text-xs text-gray-500">
-            {{ $post->published_at }}
+            {{ $post->published_at->diffForHumans()}}
         </div>
     </a>
 </div>
+
